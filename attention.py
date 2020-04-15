@@ -5,7 +5,6 @@ from torch.autograd import Variable
 
 
 class Attention(nn.Module):
-    """Attention nn module that is responsible for computing the alignment scores."""
 
     def __init__(self, method, hidden_size):
         super(Attention, self).__init__()
@@ -20,18 +19,6 @@ class Attention(nn.Module):
             self.other = nn.Parameter(torch.FloatTensor(1, self.hidden_size))
 
     def forward(self, hidden, encoder_outputs):
-        """Attend all encoder inputs conditioned on the previous hidden state of the decoder.
-        
-        After creating variables to store the attention energies, calculate their 
-        values for each encoder output and return the normalized values.
-        
-        Args:
-            hidden: decoder hidden output used for condition
-            encoder_outputs: list of encoder outputs
-            
-        Returns:
-             Normalized (0..1) energy values, re-sized to 1 x 1 x seq_len
-        """
 
         seq_len = len(encoder_outputs)
         energies = Variable(torch.zeros(seq_len))
@@ -40,7 +27,7 @@ class Attention(nn.Module):
         return F.softmax(energies).unsqueeze(0).unsqueeze(0)
 
     def _score(self, hidden, encoder_output):
-        """Calculate the relevance of a particular encoder output in respect to the decoder hidden."""
+
 
         if self.method == 'dot':
             energy = hidden.dot(encoder_output)
