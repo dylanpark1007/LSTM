@@ -58,14 +58,14 @@ en_de1 = en_de[0:200000]
 
 
 
-test2 = []
+test = []
 with open('./data/spa-eng.txt','r', encoding='utf-8') as f:
     line = f.readline()
-    test2.append(line)
+    test.append(line)
     idx = 0
     while line != None:
         line = f.readline()
-        test2.append(line)
+        test.append(line)
         idx += 1
         if idx == 100000:
             break
