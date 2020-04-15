@@ -156,12 +156,11 @@ encoder_optimizer = optim.Adam(encoder.parameters(), lr=learning_rate)
 decoder_optimizer = optim.Adam(decoder.parameters(), lr=learning_rate)
 criterion = nn.NLLLoss()
 
-# Configuring training
 n_epochs = 100000
 plot_every = 20
 print_every = 10
 
-# Keep track of time elapsed and running averages
+
 start = time.time()
 plot_losses = []
 print_loss_total = 0 # Reset every print_every
@@ -203,7 +202,7 @@ for epoch in range(1, n_epochs + 1):
         plot_loss_total = 0
 
 
-# Save our models
+# Save models
 torch.save(encoder.state_dict(), './data/encoder_params_{}'.format(language))
 torch.save(decoder.state_dict(), './data/decoder_params_{}'.format(language))
 torch.save(decoder.attention.state_dict(), './data/attention_params_{}'.format(language))
