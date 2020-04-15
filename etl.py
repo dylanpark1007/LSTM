@@ -3,9 +3,6 @@ import torch
 from language import Language
 from torch.autograd import Variable
 
-"""
-Data Extraction
-"""
 
 max_length = 20
 # max_length = 165 #de
@@ -48,12 +45,9 @@ def read_languages(lang):
     return input_lang, output_lang, pairs
 
 
-"""
-Data Transformation
-"""
 
 
-# Returns a list of indexes, one for each word in the sentence
+# Return a list of indexes, one for each word
 def indexes_from_sentence(lang, sentence):
     return [lang.word2index[word] for word in sentence.split(' ')]
 
